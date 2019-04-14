@@ -457,7 +457,17 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-  throw new Error("Not implemented");
+  let str = "";
+  while (num >= n) {
+    str += num - Math.floor(num / n) * n;
+    num = Math.floor(num / n);
+  }
+  str += num;
+  let res = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    res += str[i];
+  }
+  return res;
 }
 
 /**
@@ -473,7 +483,23 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-  throw new Error("Not implemented");
+  let arr = pathes[0].split("/");
+  arr.shift();
+  console.log(arr);
+  let str = "";
+  let index = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    let flag = true;
+    pathes.forEach(val => {
+      if (val.indexOf(arr[i]) < 0) flag = false;
+    });
+    if (flag) {
+      str += arr[i] + "/";
+      index = i;
+    } else break;
+  }
+  if (index == 0) return "";
+  return str + "/";
 }
 
 /**
