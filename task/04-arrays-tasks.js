@@ -595,7 +595,6 @@ function distinct(arr) {
     set.add(val);
   });
   for (let val of set) {
-    console.log(val);
     arrNew.push(val);
   }
   return arrNew;
